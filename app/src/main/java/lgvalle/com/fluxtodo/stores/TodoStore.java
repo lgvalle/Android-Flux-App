@@ -20,6 +20,7 @@ public class TodoStore extends Store {
     private static TodoStore instance;
     private final List<Todo> todos;
     private Todo lastDeleted;
+    private String last_action = "";
 
 
     protected TodoStore(Dispatcher dispatcher) {
@@ -42,12 +43,16 @@ public class TodoStore extends Store {
         return lastDeleted != null;
     }
 
+    public String getLast_action() {
+        return last_action;
+    }
 
     @Override
     @Subscribe
     @SuppressWarnings("unchecked")
     public void onAction(Action action) {
         long id;
+        last_action = action.getType();
         switch (action.getType()) {
             case TodoActions.TODO_CREATE:
                 String text = ((String) action.getData().get(TodoActions.KEY_TEXT));
@@ -175,8 +180,7 @@ public class TodoStore extends Store {
         Collections.sort(todos);
     }
 
-    @Override
-    StoreChangeEvent changeEvent() {
+    @Override StoreChangeEvent changeEvent() {
         return new TodoStoreChangeEvent();
     }
 
