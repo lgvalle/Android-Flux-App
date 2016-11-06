@@ -35,6 +35,7 @@ public class TodoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initDependencies();
         setupView();
+        updateUI();
     }
 
     private void initDependencies() {
