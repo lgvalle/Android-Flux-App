@@ -7,53 +7,52 @@
     android:layout_centerVertical="true"
     android:animateLayoutChanges="true"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+              tools:context=".MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal" android:layout_margin="@dimen/activity_vertical_margin">
 
 
-        <CheckBox
-            android:id="@+id/main_checkbox"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/linearLayout">
+            <CheckBox
+                android:id="@+id/main_checkbox"
+                android:layout_width="wrap_content"
 
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            />
-
-        <EditText
-            android:id="@+id/main_input"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/main_add"
-            android:layout_toRightOf="@+id/main_checkbox"
-            android:layout_toStartOf="@+id/main_add"
-            android:hint="What needs to be done?"
-            android:maxLines="1"
-            android:singleLine="true" />
-
-        <Button
-            android:id="@+id/main_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="Add" />
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="center"/>
+            <EditText
+                android:id="@+id/main_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/main_add"
+                android:layout_toRightOf="@+id/main_checkbox"
+                android:layout_toStartOf="@+id/main_add"
+                android:hint="What needs to be done?"
+                android:maxLines="1"
+                android:singleLine="true" android:layout_gravity="center_vertical" android:layout_weight="2"/>
+            <Button
+                android:id="@+id/main_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="Add" />
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/main_input"
             android:scrollbars="vertical"
-            android:layout_above="@+id/main_clear_completed" />
+            android:layout_above="@+id/main_clear_completed" android:layout_below="@+id/linearLayout"/>
 
         <Button
             android:id="@+id/main_clear_completed"

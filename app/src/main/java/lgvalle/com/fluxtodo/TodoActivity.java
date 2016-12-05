@@ -15,12 +15,15 @@ import android.widget.EditText;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
+import lgvalle.com.fluxtodo.actions.Action;
 import lgvalle.com.fluxtodo.actions.ActionsCreator;
+import lgvalle.com.fluxtodo.actions.TodoActions;
 import lgvalle.com.fluxtodo.dispatcher.Dispatcher;
 import lgvalle.com.fluxtodo.stores.TodoStore;
 
 public class TodoActivity extends AppCompatActivity {
 
+    private static final String STATE_TODOS = "todoList";
     private EditText mainInput;
     private ViewGroup mainLayout;
     private Dispatcher dispatcher;
@@ -35,6 +38,7 @@ public class TodoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initDependencies();
         setupView();
+        updateUI();
     }
 
     private void initDependencies() {
@@ -81,7 +85,7 @@ public class TodoActivity extends AppCompatActivity {
     private void updateUI() {
         listAdapter.setItems(todoStore.getTodos());
 
-        if (todoStore.canUndo()) {
+        if (todoStore.getLast_action().equals(TodoActions.TODO_DESTROY) && todoStore.canUndo()) {
             Snackbar snackbar = Snackbar.make(mainLayout, "Element deleted", Snackbar.LENGTH_LONG);
             snackbar.setAction("Undo", new View.OnClickListener() {
                 @Override
@@ -143,4 +147,6 @@ public class TodoActivity extends AppCompatActivity {
     public void onTodoStoreChange(TodoStore.TodoStoreChangeEvent event) {
         updateUI();
     }
+
+
 }
