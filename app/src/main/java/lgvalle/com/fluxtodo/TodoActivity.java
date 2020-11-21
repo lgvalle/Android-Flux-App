@@ -76,6 +76,7 @@ public class TodoActivity extends AppCompatActivity {
         mainList.setLayoutManager(new LinearLayoutManager(this));
         listAdapter = new TodoRecyclerAdapter(actionsCreator);
         mainList.setAdapter(listAdapter);
+        mainInput.hash();
     }
 
     private void updateUI() {
